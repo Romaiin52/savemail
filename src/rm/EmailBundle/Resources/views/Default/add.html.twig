@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} Ajouter - {{ parent() }} {% endblock %}
+
+{% block body %}
+	<h2>Ajouter un email</h2>
+
+	<div class="well">
+		<form action="{{ path('rm_email_add') }}" method="post" {{ form_enctype(form) }} >
+
+			{{ form_label(form.object, "Objet du mail") }}
+			{{ form_widget(form.object) }}
+
+			{{ form_label(form.content, "Contenu du mail") }}
+			{{ form_widget(form.content) }}
+
+			{{ form_label(form.isFavorite, "Mettre ce mail en favoris") }}
+			{{ form_widget(form.isFavorite) }}
+
+			{{ form_rest(form) }}
+
+			<hr>
+
+			<input type="submit" class="btn btn-primary" />
+		</form>
+	</div>
+
+{% endblock %}

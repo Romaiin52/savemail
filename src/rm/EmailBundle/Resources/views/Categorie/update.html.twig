@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} Modifier - {{ parent() }} {% endblock %}
+
+{% block body %}
+	<h2>Modifier l'email</h2>
+	<div class="well">
+		<form action="{{ path('rm_email_add') }}" method="post" {{ form_enctype(form) }} >
+
+			{{ form_label(form.title, "Titre de la catégorie") }}
+			{{ form_widget(form.title) }}
+
+			{{ form_rest(form) }}
+
+			<hr>
+
+			<input type="submit" class="btn btn-primary" />
+		</form>
+	</div>
+
+{% endblock %}

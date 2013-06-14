@@ -1,0 +1,15 @@
+/* line 3, ../sass/screen.scss */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+/* line 8, ../sass/screen.scss */
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+/* line 12, ../sass/screen.scss */
+#wrapperHeader {
+  background: #00afff;
+}

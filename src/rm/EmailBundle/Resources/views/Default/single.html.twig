@@ -1,0 +1,38 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} Email {{ email.object }} - {{ parent() }} {% endblock %}
+
+{% block body %}
+	<div class="info">
+		{% for message in app.session.flashbag.get('info') %}
+			<div class="alert alert-info">  
+			  <a class="close" data-dismiss="alert">×</a>  
+			  <strong>Informations : </strong>{{ message }}  
+			</div> 
+		{% endfor %}
+	</div>
+
+	<h2>{{ email.object }}</h2>
+
+	<div class="well">
+		{{ email.content }}
+	</div>
+
+	<p>
+		<a href="{{ path('rm_email_home') }}" class="btn">
+			<i class="icon-chevron-left"></i>
+			Retour à la liste
+		</a>
+
+		<a href="{{ path('rm_email_update', {'id': email.id }) }}" class="btn">
+			<i class="icon-edit"></i>
+			Modifier l'email
+		</a>
+
+		<a href="{{ path('rm_email_delete', {'id': email.id }) }}" class="btn">
+			<i class="icon-trash"></i>
+			Supprimer l'email
+		</a>
+	</p>
+
+{% endblock %}

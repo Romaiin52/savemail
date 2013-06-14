@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} Home - {{ parent() }} {% endblock %}
+
+{% block body %}
+	<h2>Les emails</h2>
+
+	<ul class="nav nav-pills nav-stacked">
+		{% for email in emails  %}
+			<li>
+				<a href="{{ path('rm_email_single', { 'id' : email.id } ) }}" title="">{{ email.object }}</a>
+			</li>
+		{% else %}
+			<li>Il n'y a pas d'article pour le moment</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

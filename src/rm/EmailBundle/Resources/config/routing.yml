@@ -1,0 +1,55 @@
+rm_email_home:
+    pattern:  /{page}
+    defaults: { _controller: rmEmailBundle:Default:index, page:1 }
+    requirements:
+        page: \d*
+
+rm_email_single:
+    pattern:  /single/{id}
+    defaults: { _controller: rmEmailBundle:Default:single }
+    requirements:
+        id: \d+
+
+rm_email_add:
+    pattern:  /add
+    defaults: { _controller: rmEmailBundle:Default:add }
+
+rm_email_update:
+    pattern:  /update/{id}
+    defaults: { _controller: rmEmailBundle:Default:update }
+    requirements:
+        id: \d+
+
+rm_email_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: rmEmailBundle:Default:delete }
+    requirements:
+        id: \d+
+
+rm_email_categorie_home:
+    pattern:  categories/{page}
+    defaults: { _controller: rmEmailBundle:Categorie:index, page:1 }
+    requirements:
+        page: \d*
+
+rm_email_categorie_single:
+    pattern:  categorie/single/{id}
+    defaults: { _controller: rmEmailBundle:Categorie:single }
+    requirements:
+        id: \d+
+
+rm_email_categorie_add:
+    pattern:  categorie/add
+    defaults: { _controller: rmEmailBundle:Categorie:add }
+
+rm_email_categorie_update:
+    pattern:  categorie/update/{id}
+    defaults: { _controller: rmEmailBundle:Categorie:update }
+    requirements:
+        id: \d+
+
+rm_email_categorie_delete:
+    pattern:  categorie/delete/{id}
+    defaults: { _controller: rmEmailBundle:Categorie:delete }
+    requirements:
+        id: \d+

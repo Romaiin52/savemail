@@ -1,0 +1,4 @@
+rm_email:
+    resource: "@rmEmailBundle/Resources/config/routing.yml"
+    prefix:   /email
+
