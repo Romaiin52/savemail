@@ -1,11 +1,9 @@
-{% extends "::base.html.twig" %}
+<div id="modalAddEmail" class="modal hide fade">
+	<div class="modal-header">
+		<h3>Ajouter un email</h3>
+	</div>
 
-{% block title %} Ajouter - {{ parent() }} {% endblock %}
-
-{% block body %}
-	<h2>Ajouter un email</h2>
-
-	<div class="well">
+	<div class="modal-body">
 		<form action="{{ path('rm_email_add') }}" method="post" {{ form_enctype(form) }} >
 
 			{{ form_label(form.object, "Objet du mail") }}
@@ -14,15 +12,20 @@
 			{{ form_label(form.content, "Contenu du mail") }}
 			{{ form_widget(form.content) }}
 
-			{{ form_label(form.isFavorite, "Mettre ce mail en favoris") }}
-			{{ form_widget(form.isFavorite) }}
+			{{ form_widget(form.categories) }}
+
+			<label>
+				Mettre ce mail en favoris {{ form_widget(form.isFavorite) }}
+			</label>
 
 			{{ form_rest(form) }}
 
-			<hr>
-
+	</div>
+	<div class="modal-footer">		
 			<input type="submit" class="btn btn-primary" />
 		</form>
+	
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
 	</div>
 
-{% endblock %}
+</div>

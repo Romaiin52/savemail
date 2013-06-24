@@ -1,14 +1,139 @@
-$mainColor : #00AFFF;
+/***** VARIABLES *****/
+
+$textColor: #333333;
+
+
+/***** GENERAL *****/
 
 body{
-	padding-top: 60px;
+	padding-top: 70px;
     padding-bottom: 40px;
+}
+
+
+/**** HEADER *****/
+.navbar{
+	.navbar-inner{
+		background-color: #45AEEA;
+	    background-image: linear-gradient(to bottom, #54B4EB, #2FA4E7);
+	    padding:5px 0;
+	    border:none;
+	}
+
+	.brand {
+	    font-family: 'Helvetica Neue','Arial',sans-serif;
+	    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+	    color:#fff;
+	    margin-right: 20px;
+	}
+
+	.header-divider {
+	    border-left: 1px solid #53B3ED;
+	    border-right: 1px solid #30A6E6;
+	    height: 40px;
+    	left: 130px;
+	    position: absolute;
+	}
+
+	.nav > li > a {
+		color:$textColor;
+		text-shadow:none;
+	}
+
+	.nav > .active > a, .nav .active > a:hover, .nav .active > a:focus {
+		background: none;
+		box-shadow: none;
+	}
+
+	.navbar-text{
+		color:#ccc;
+		a{
+			color:#fff;
+		}
+	}
+}
+
+
+
+/***** SIDEBAR *****/
+
+#content hr{
+	margin: 0 0 20px 0;
 }
 
 .sidebar-nav {
 	padding: 9px 0;
+
+	a{
+		color: $textColor;
+	}
 }
 
-#wrapperHeader{
-	background:$mainColor;
+form #rm_emailbundle_categorietype_color{
+	width:63px;
+}
+
+
+/***** LISTE *****/
+h2{
+	position: relative;
+	padding-left: 25px;
+	margin-bottom:0;
+
+	.label{
+		position: absolute;
+		left: 0;
+		top: 10px;
+	}
+
+	.label-info{
+		background-color: #45AEEA;
+	}
+}
+
+.accordion-heading{
+	position: relative;
+
+	a.accordion-toggle{
+		text-decoration: none;
+		color: $textColor;
+	}
+
+	.tag{
+		position: absolute;
+		top: 8px;
+		right: 8px;
+	}
+}
+
+.accordion-admin{
+	height: 40px;
+}
+
+/*** FORMULAIRE EMAIL ***/
+form{
+	textarea{
+		width:90%;
+		height:120px;
+	}
+
+	select{
+		margin-top:5px;
+	}
+
+	label input[type="radio"], label input[type="checkbox"]{
+		margin-top:0;
+	}
+
+	hr{
+		margin:10px 0;
+	}
+}
+
+/***** FOOTER *****/
+footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+
 }

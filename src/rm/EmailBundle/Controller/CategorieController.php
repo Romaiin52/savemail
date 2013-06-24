@@ -72,9 +72,9 @@ class CategorieController extends Controller
                 $em->persist($categorie);
                 $em->flush($categorie);
 
-                $this->get('session')->getFlashBag()->add('info', 'L\'categorie a bien été enregistré');
+                $this->get('session')->getFlashBag()->add('info', 'La catégorie a bien été enregistré');
 
-                return $this->redirect($this->generateUrl('rm_categorie_single',  array('id'=> $categorie->getId() ) ));
+                return $this->redirect($this->generateUrl('rm_email_categorie_single',  array('id'=> $categorie->getId() ) ));
             }
         }
 
@@ -85,16 +85,20 @@ class CategorieController extends Controller
         );
     }
 
-    public function deleteAction($id)
+    public function deleteAction(Categorie $categorie)
     {
-        return $this->render('rmEmailBundle:Categorie:delete.html.twig', array('id' => $id));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($categorie);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('rm_email_home'));
     }
 
-    public function menuFavorisAction($nombre){
+    public function menuAction(){
         $em = $this->getDoctrine()->getManager();
-        $liste_favoris = $em->getRepository('rmEmailBundle:Categorie')->findBy( array('isFavorite'=>true), array('date'=>'desc'),$nombre,0);
+        $liste_categories = $em->getRepository('rmEmailBundle:Categorie')->findall();
 
-        return $this->render('rmEmailBundle:Categorie:menuFavoris.html.twig', 
-          array('liste_favoris' => $liste_favoris)); 
+        return $this->render('rmEmailBundle:Categorie:menu.html.twig', 
+          array('liste_categories' => $liste_categories)); 
     }
 }

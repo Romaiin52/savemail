@@ -12,4 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class EmailRepository extends EntityRepository
 {
+	public function calculteNumEmailsByCat($id){
+		$qb = $this->createQueryBuilder('e')
+				   ->select('COUNT(e)')
+				   ->leftJoin('e.categories','c')
+				   ->where('c.id = :id')
+				   ->setParameter('id', $id);
+
+		return $qb->getQuery()
+				  ->getSingleScalarResult();
+	}
+
+	public function findWhereCategories($id)
+	{
+		$qb = $this->createQueryBuilder('e')
+				   ->leftJoin('e.categories','c')
+				   ->where('c.id = :id')
+				   ->setParameter('id', $id);
+
+		return $qb->getQuery()
+				  ->getResult();
+	}
 }

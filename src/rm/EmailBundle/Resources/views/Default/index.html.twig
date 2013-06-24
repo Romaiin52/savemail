@@ -3,16 +3,47 @@
 {% block title %} Home - {{ parent() }} {% endblock %}
 
 {% block body %}
-	<h2>Les emails</h2>
+	{% if categorie is defined %} <h2><span class="label" style="background-color:{{ categorie.color }}">{{ emails | length }}</span> Les emails - {{ categorie.title }} </h2>
+	{% else %} <h2><span class="label label-info">{{ emails | length }}</span> Les emails</h2>
+	{% endif %}
+	<hr>
 
-	<ul class="nav nav-pills nav-stacked">
-		{% for email in emails  %}
-			<li>
-				<a href="{{ path('rm_email_single', { 'id' : email.id } ) }}" title="">{{ email.object }}</a>
-			</li>
-		{% else %}
-			<li>Il n'y a pas d'article pour le moment</li>
-		{% endfor %}
-	</ul>
+<div class="accordion" id="accordion2">
+	{% for email in emails  %}
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{{ email.id }}">
+					{{ email.object }}
+				</a>
+				<div class="tag">
+					{% if email.categories.count > 0 %}
+						{% for categorie in email.categories %}
+							<span class="label" style="background-color:{{ categorie.color }}"><i class="icon-tag icon-white"></i> {{ categorie.title }}</ŝpan>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+
+			<div id="collapse{{ email.id }}" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<pre>{{ email.content }}</pre>
+
+					<div class="accordion-admin">
+						<div class="btn-toolbar">
+						    <div class="btn-group pull-left">
+						    	<a class="btn" href="#"><i class="{% if email.isFavorite %} icon-star {% else %} icon-star-empty {% endif %}"></i></a>
+							    <a class="btn" href="{{ path('rm_email_update', {id:email.id} ) }}"><i class="icon-pencil"></i></a>
+							    <a class="btn" href="{{ path('rm_email_delete', {id:email.id} ) }}"><i class="icon-remove"></i></a>
+						    </div>
+					    </div>
+					    <button class="btn btn-small copy-button pull-right" data-clipboard-target="collapse{{ email.id }}"><i class="icon-upload"></i> Copier</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<p>Il n'y a pas d'email pour le moment</p>
+	{% endfor %}
+</div>
 
 {% endblock %}

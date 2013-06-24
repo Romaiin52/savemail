@@ -3,22 +3,39 @@
 namespace rm\EmailBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use rm\EmailBundle\Entity\Email;
 use rm\EmailBundle\Form\EmailType;
+use rm\EmailBundle\Entity\Categorie;
 
 class DefaultController extends Controller
 {
-    public function indexAction($page)
+    public function indexAction($categorieId)
     {
         $em = $this->getDoctrine()->getManager();
-        $emails = $em->getRepository('rmEmailBundle:Email')->findAll();
+        
+        if($categorieId == 0){
+            $emails = $em->getRepository('rmEmailBundle:Email')->findAll();
 
-        return $this->render('rmEmailBundle:Default:index.html.twig', 
-            array(
-                'page' => $page,
-                'emails' => $emails
-            )
-        );
+            return $this->render('rmEmailBundle:Default:index.html.twig', 
+                array(
+                        'emails' => $emails
+                    )
+                );
+        }
+        else{
+            $emails = $em->getRepository('rmEmailBundle:Email')->findWhereCategories($categorieId);
+            $categorie = $em->getRepository('rmEmailBundle:Categorie')->findOneById($categorieId);
+
+            return $this->render('rmEmailBundle:Default:index.html.twig', 
+                array(
+                        'categorie' => $categorie,
+                        'emails' => $emails
+                    )
+                );
+        }
+
+        
     }
 
     public function singleAction(Email $email)
@@ -47,7 +64,7 @@ class DefaultController extends Controller
 
                 $this->get('session')->getFlashBag()->add('info', 'L\'email a bien été enregistré');
 
-                return $this->redirect($this->generateUrl('rm_email_single',  array('id'=> $email->getId() ) ));
+                return $this->redirect($this->generateUrl('rm_email_home'));
             }
         }
 
@@ -85,9 +102,13 @@ class DefaultController extends Controller
         );
     }
 
-    public function deleteAction($id)
+    public function deleteAction(Email $email)
     {
-        return $this->render('rmEmailBundle:Default:delete.html.twig', array('id' => $id));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($email);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('rm_email_home'));
     }
 
     public function menuFavorisAction($nombre){
@@ -96,5 +117,13 @@ class DefaultController extends Controller
 
         return $this->render('rmEmailBundle:Default:menuFavoris.html.twig', 
           array('liste_favoris' => $liste_favoris)); 
+    }
+
+
+    public function countEmailsByCatAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $nbEmails = $em->getRepository('rmEmailBundle:Email')->calculteNumEmailsByCat($id);
+
+        return new Response($nbEmails);
     }
 }

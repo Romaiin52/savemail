@@ -1,22 +1,13 @@
-{% extends "::base.html.twig" %}
 
-{% block title %} Ajouter une catégorie - {{ parent() }} {% endblock %}
+<h4>Ajouter une catégorie</h4>
 
-{% block body %}
-	<h2>Ajouter une catégorie</h2>
+<form class="form-inline" action="{{ path('rm_email_categorie_add') }}" method="post" {{ form_enctype(form) }} >
 
-	<div class="well">
-		<form action="{{ path('rm_email_categorie_add') }}" method="post" {{ form_enctype(form) }} >
+	{{ form_widget(form.title, {'attr': {'class': 'span6', 'placeholder': 'titre'} }) }}
 
-			{{ form_label(form.title, "Titre de la catégorie") }}
-			{{ form_widget(form.title) }}
+	{{ form_widget(form.color, {'attr': {'class': 'bscp colorpicker span2', 'placeholder': 'couleur'} }) }}
 
-			{{ form_rest(form) }}
+	{{ form_rest(form) }}
 
-			<hr>
-
-			<input type="submit" class="btn btn-primary" />
-		</form>
-	</div>
-
-{% endblock %}
+	<input type="submit" class="btn" value="Valider" />
+</form>

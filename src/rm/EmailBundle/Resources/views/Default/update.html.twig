@@ -4,8 +4,9 @@
 
 {% block body %}
 	<h2>Modifier l'email</h2>
+	<hr>
 	<div class="well">
-		<form action="{{ path('rm_email_add') }}" method="post" {{ form_enctype(form) }} >
+		<form action="{{ path('rm_email_update', {'id': form.vars.value.id}) }}" method="post" {{ form_enctype(form) }} >
 
 			{{ form_label(form.object, "Objet du mail") }}
 			{{ form_widget(form.object) }}

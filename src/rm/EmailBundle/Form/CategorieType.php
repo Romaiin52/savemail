@@ -12,6 +12,7 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('title','text')
+            ->add('color','text')
         ;
     }
 

@@ -29,6 +29,13 @@ class Categorie
     private $title;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=255)
+     */
+    private $color;
+
+    /**
      * @ORM\ManyToMany(targetEntity="rm\EmailBundle\Entity\Email", mappedBy="categories")
      *
      */
@@ -106,5 +113,28 @@ class Categorie
     public function getEmails()
     {
         return $this->emails;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Categorie
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string 
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

@@ -1,15 +1,135 @@
-/* line 3, ../sass/screen.scss */
+/***** VARIABLES *****/
+/***** GENERAL *****/
+/* line 8, ../sass/screen.scss */
 body {
-  padding-top: 60px;
+  padding-top: 70px;
   padding-bottom: 40px;
 }
 
-/* line 8, ../sass/screen.scss */
+/**** HEADER *****/
+/* line 16, ../sass/screen.scss */
+.navbar .navbar-inner {
+  background-color: #45AEEA;
+  background-image: linear-gradient(to bottom, #54b4eb, #2fa4e7);
+  padding: 5px 0;
+  border: none;
+}
+/* line 23, ../sass/screen.scss */
+.navbar .brand {
+  font-family: 'Helvetica Neue','Arial',sans-serif;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  color: #fff;
+  margin-right: 20px;
+}
+/* line 30, ../sass/screen.scss */
+.navbar .header-divider {
+  border-left: 1px solid #53B3ED;
+  border-right: 1px solid #30A6E6;
+  height: 40px;
+  left: 130px;
+  position: absolute;
+}
+/* line 38, ../sass/screen.scss */
+.navbar .nav > li > a {
+  color: #333333;
+  text-shadow: none;
+}
+/* line 43, ../sass/screen.scss */
+.navbar .nav > .active > a, .navbar .nav .active > a:hover, .navbar .nav .active > a:focus {
+  background: none;
+  box-shadow: none;
+}
+/* line 48, ../sass/screen.scss */
+.navbar .navbar-text {
+  color: #ccc;
+}
+/* line 50, ../sass/screen.scss */
+.navbar .navbar-text a {
+  color: #fff;
+}
+
+/***** SIDEBAR *****/
+/* line 60, ../sass/screen.scss */
+#content hr {
+  margin: 0 0 20px 0;
+}
+
+/* line 64, ../sass/screen.scss */
 .sidebar-nav {
   padding: 9px 0;
 }
+/* line 67, ../sass/screen.scss */
+.sidebar-nav a {
+  color: #333333;
+}
 
-/* line 12, ../sass/screen.scss */
-#wrapperHeader {
-  background: #00afff;
+/* line 72, ../sass/screen.scss */
+form #rm_emailbundle_categorietype_color {
+  width: 63px;
+}
+
+/***** LISTE *****/
+/* line 78, ../sass/screen.scss */
+h2 {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 0;
+}
+/* line 83, ../sass/screen.scss */
+h2 .label {
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+/* line 89, ../sass/screen.scss */
+h2 .label-info {
+  background-color: #45AEEA;
+}
+
+/* line 94, ../sass/screen.scss */
+.accordion-heading {
+  position: relative;
+}
+/* line 97, ../sass/screen.scss */
+.accordion-heading a.accordion-toggle {
+  text-decoration: none;
+  color: #333333;
+}
+/* line 102, ../sass/screen.scss */
+.accordion-heading .tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+/* line 109, ../sass/screen.scss */
+.accordion-admin {
+  height: 40px;
+}
+
+/*** FORMULAIRE EMAIL ***/
+/* line 115, ../sass/screen.scss */
+form textarea {
+  width: 90%;
+  height: 120px;
+}
+/* line 120, ../sass/screen.scss */
+form select {
+  margin-top: 5px;
+}
+/* line 124, ../sass/screen.scss */
+form label input[type="radio"], form label input[type="checkbox"] {
+  margin-top: 0;
+}
+/* line 128, ../sass/screen.scss */
+form hr {
+  margin: 10px 0;
+}
+
+/***** FOOTER *****/
+/* line 134, ../sass/screen.scss */
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }

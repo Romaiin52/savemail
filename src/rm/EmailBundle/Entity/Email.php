@@ -59,6 +59,7 @@ class Email
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 

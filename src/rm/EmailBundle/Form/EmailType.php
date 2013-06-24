@@ -5,6 +5,7 @@ namespace rm\EmailBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use rm\EmailBundle\Entity\Categorie;
 
 class EmailType extends AbstractType
 {
@@ -14,6 +15,7 @@ class EmailType extends AbstractType
             ->add('object','text')
             ->add('content','textarea')
             ->add('isFavorite','checkbox', array('required' => false))
+            ->add('categories','entity', array('class' => 'rmEmailBundle:Categorie', 'property' => 'title', 'multiple' => true))
         ;
     }
 

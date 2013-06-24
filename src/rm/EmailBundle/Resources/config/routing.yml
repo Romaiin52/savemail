@@ -1,8 +1,8 @@
 rm_email_home:
-    pattern:  /{page}
-    defaults: { _controller: rmEmailBundle:Default:index, page:1 }
+    pattern:  /{categorieId}
+    defaults: { _controller: rmEmailBundle:Default:index, categorieId:0 }
     requirements:
-        page: \d*
+        categorieId: \d*
 
 rm_email_single:
     pattern:  /single/{id}

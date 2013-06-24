@@ -11,6 +11,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.css') }}" type="text/css" />
             <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-responsive.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-colorpicker.css') }}" rel="stylesheet">
 
             <link href="{{ asset('css/stylesheets/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
             <link href="{{ asset('css/stylesheets/print.css') }}" media="print" rel="stylesheet" type="text/css" />
@@ -27,20 +28,15 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="brand" href="{{ path('rm_email_home') }}">SavEmail</a>
+                    <div class="header-divider"></div>
                     <div class="nav-collapse collapse">
                         <p class="navbar-text pull-right">
                           Connecté en tant que <a href="#" class="navbar-link">RM8</a>
                         </p>
                         <ul class="nav">
-                          <li class="active"><a href="{{ path('rm_email_home') }}">Accueil</a></li>
-                          <li class=""><a href="{{ path('rm_email_add') }}">Ajouter un email</a></li>
-                          <li class=""><a href="{{ path('rm_email_add') }}">Ajouter une catégorie</a></li>
+                          <li class="active"><a href="{{ path('rm_email_home') }}"><i class="icon-home icon-white"></i> Accueil</a></li>
+                          <li class=""><a href="#modalAddEmail" data-toggle="modal"><i class="icon-plus icon-white"></i> Ajouter un email</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -50,36 +46,45 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span3">
-                    <div class="well sidebar-nav">
+                    <div class="well">
 
-                        <ul class="nav nav-list">
-                          <li class="nav-header">Catégories</li>
-                          <li><a href="{{ path('rm_email_home') }}">Test</a></li>
-                          <li><a href="{{ path('rm_email_add') }}">test</a></li>
-                        </ul>
+                        {{ render(controller("rmEmailBundle:Categorie:menu")) }}
 
                         <hr>
-                        
-                        {{ render(controller("rmEmailBundle:Default:menuFavoris", {'nombre':5} )) }}
 
+                        {{ render(controller("rmEmailBundle:Categorie:add")) }}
                     </div>
                 </div>
 
-                <div id="content" class="span9">
+                <div id="content" class="span6">
                     {% block body %}{% endblock %}
                 </div>
 
+                <div class="span3">
+                    <div class="well">
+                        {{ render(controller("rmEmailBundle:Default:menuFavoris", {'nombre':5} )) }}
+                    </div>
+                </div>
+
             </div>
-            <hr>
+            
             <footer>
+                <hr>
                 <p>&copy; SavEmail</p>
             </footer>
 
         </div>
 
+        <div class="ctr-modal">
+            {{ render(controller("rmEmailBundle:Default:add" )) }}
+        </div>
+
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('lib/jquery-2.0.0.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+            <script src="{{ asset('js/bootstrap-colorpicker.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/ZeroClipboard.min') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
         {% endblock %}
     </body>
 </html>
