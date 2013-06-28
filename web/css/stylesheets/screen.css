@@ -126,8 +126,13 @@ form hr {
   margin: 10px 0;
 }
 
+/* line 133, ../sass/screen.scss */
+.alert ul {
+  margin-bottom: 0;
+}
+
 /***** FOOTER *****/
-/* line 134, ../sass/screen.scss */
+/* line 138, ../sass/screen.scss */
 footer {
   width: 100%;
   position: fixed;

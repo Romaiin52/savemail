@@ -3,6 +3,8 @@
 
 <form class="form-inline" action="{{ path('rm_email_categorie_add') }}" method="post" {{ form_enctype(form) }} >
 
+	{% include "utiles/form-error.html.twig" %}
+
 	{{ form_widget(form.title, {'attr': {'class': 'span6', 'placeholder': 'titre'} }) }}
 
 	{{ form_widget(form.color, {'attr': {'class': 'bscp colorpicker span2', 'placeholder': 'couleur'} }) }}

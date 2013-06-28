@@ -3,6 +3,7 @@
 namespace rm\EmailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Categorie
@@ -25,6 +26,7 @@ class Categorie
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\Length(min="2", minMessage="L'objet doit faire au moins {{ limit }} caractères.")
      */
     private $title;
 
@@ -32,12 +34,13 @@ class Categorie
      * @var string
      *
      * @ORM\Column(name="color", type="string", length=255)
+     * @Assert\Regex(pattern="/^#(?:[0-9a-f]{3}){1,2}$/", message="La couleur doit être au format hexadécimale")
      */
     private $color;
 
     /**
      * @ORM\ManyToMany(targetEntity="rm\EmailBundle\Entity\Email", mappedBy="categories")
-     *
+     * @Assert\Valid()
      */
     private $emails;
 

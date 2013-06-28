@@ -8,6 +8,8 @@
 	<div class="well">
 		<form class="form-inline" action="{{ path('rm_email_categorie_update', {'id': form.vars.value.id} ) }}" method="post" {{ form_enctype(form) }} >
 
+			{% include "utiles/form-error.html.twig" %}
+
 			{{ form_widget(form.title, {'attr': {'class': 'span6', 'placeholder': 'titre'} }) }}
 			{{ form_widget(form.color, {'attr': {'class': 'bscp colorpicker span1'} }) }}
 

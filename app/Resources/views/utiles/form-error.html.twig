@@ -1,0 +1,15 @@
+{% set a = false %}
+
+{% for child in form.children  %}
+    {% if form_errors(child) is not empty %}
+        {% set a = 'true' %}
+    {% endif %}
+{% endfor %}
+
+{% if a == true %}
+    <div class="alert alert-error">
+        {% for children in form.children %}
+            {{  form_errors(children) }}
+        {% endfor %}
+    </div>
+{% endif %}

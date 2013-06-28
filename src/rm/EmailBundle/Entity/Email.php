@@ -3,6 +3,7 @@
 namespace rm\EmailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Email
@@ -25,6 +26,7 @@ class Email
      * @var string
      *
      * @ORM\Column(name="object", type="string", length=255)
+     * @Assert\Length(min="2", minMessage="L'objet doit faire au moins {{ limit }} caractères.")
      */
     private $object;
 
@@ -32,6 +34,7 @@ class Email
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
      */
     private $date;
 
@@ -39,6 +42,7 @@ class Email
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank()
      */
     private $content;
 
@@ -51,7 +55,7 @@ class Email
 
     /**
      * @ORM\ManyToMany(targetEntity="rm\EmailBundle\Entity\Categorie", cascade={"persist"}, inversedBy="emails")
-     *
+     * @Assert\Valid()
      */
     private $categories;
 

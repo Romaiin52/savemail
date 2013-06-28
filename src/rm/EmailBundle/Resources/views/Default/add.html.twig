@@ -6,6 +6,8 @@
 	<div class="modal-body">
 		<form action="{{ path('rm_email_add') }}" method="post" {{ form_enctype(form) }} >
 
+			{% include "utiles/form-error.html.twig" %}
+
 			{{ form_label(form.object, "Objet du mail") }}
 			{{ form_widget(form.object) }}
 
