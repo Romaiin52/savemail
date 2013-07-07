@@ -2,6 +2,13 @@ rm_email:
     resource: "@rmEmailBundle/Resources/config/routing.yml"
     prefix:   /email
 
+root:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /email
+        permanent: true
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

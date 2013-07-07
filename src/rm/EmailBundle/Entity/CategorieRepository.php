@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategorieRepository extends EntityRepository
 {
+	public function finAllCategorieByUser($userId)
+	{
+		$qb = $this->createQueryBuilder('c')
+				   ->select('c')
+				   ->leftJoin('c.user', 'u')
+				   ->where('u.id = :uid')
+				   ->setParameter('uid', $userId);				   		   
+
+		return $qb;
+	}
 }
