@@ -44,6 +44,13 @@ class Categorie
      */
     private $emails;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="rm\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -139,5 +146,28 @@ class Categorie
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \rm\UserBundle\Entity\User $user
+     * @return Categorie
+     */
+    public function setUser(\rm\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \rm\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

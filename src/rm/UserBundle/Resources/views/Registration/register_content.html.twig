@@ -1,0 +1,13 @@
+<h3>Créer un compte </h3>
+
+<hr>
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {{ form_widget(form) }}
+    <div>
+    	<hr>
+        <input type="submit" class="btn btn-primary" value="Valider" />
+    </div>
+</form>
+
+<a class="pull-right" href="{{ path('fos_user_security_login') }}">Déjà inscrit ?</a>

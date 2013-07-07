@@ -59,6 +59,13 @@ class Email
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="rm\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+     */
+    private $user;
+
 
     public function __construct()
     {
@@ -201,5 +208,28 @@ class Email
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \rmUserBundle\Entity\User $user
+     * @return Email
+     */
+    public function setUser(\rm\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \rmUserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

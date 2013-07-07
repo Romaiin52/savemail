@@ -13,9 +13,11 @@ class DefaultController extends Controller
     public function indexAction($categorieId)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.context')->getToken()->getUser();
         
         if($categorieId == 0){
-            $emails = $em->getRepository('rmEmailBundle:Email')->findAll();
+            $emails = $em->getRepository('rmEmailBundle:Email')->findBy(array('user'=>$user));
 
             return $this->render('rmEmailBundle:Default:index.html.twig', 
                 array(
@@ -50,6 +52,8 @@ class DefaultController extends Controller
     public function addAction()
     {
         $email = new Email();
+        $email->setUser($this->get('security.context')->getToken()->getUser());
+
         $form = $this->createForm(new EmailType, $email);
 
         $request = $this->get('request');
@@ -113,7 +117,10 @@ class DefaultController extends Controller
 
     public function menuFavorisAction($nombre){
         $em = $this->getDoctrine()->getManager();
-        $liste_favoris = $em->getRepository('rmEmailBundle:Email')->findBy( array('isFavorite'=>true), array('date'=>'desc'),$nombre,0);
+
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $liste_favoris = $em->getRepository('rmEmailBundle:Email')->findBy( array('isFavorite'=>true, 'user'=>$user), array('date'=>'desc'), $nombre,0);
 
         return $this->render('rmEmailBundle:Default:menuFavoris.html.twig', 
           array('liste_favoris' => $liste_favoris)); 

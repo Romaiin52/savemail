@@ -11,7 +11,10 @@ class CategorieController extends Controller
     public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('rmEmailBundle:Categorie')->findAll();
+
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $categories = $em->getRepository('rmEmailBundle:Categorie')->findBy(array('user'=>$user));
 
         return $this->render('rmEmailBundle:Categorie:index.html.twig', 
             array(
@@ -33,6 +36,8 @@ class CategorieController extends Controller
     public function addAction()
     {
         $categorie = new Categorie();
+        $categorie->setUser($this->get('security.context')->getToken()->getUser());
+
         $form = $this->createForm(new CategorieType, $categorie);
 
         $request = $this->get('request');
@@ -96,7 +101,10 @@ class CategorieController extends Controller
 
     public function menuAction(){
         $em = $this->getDoctrine()->getManager();
-        $liste_categories = $em->getRepository('rmEmailBundle:Categorie')->findall();
+
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $liste_categories = $em->getRepository('rmEmailBundle:Categorie')->findBy( array('user'=>$user));
 
         return $this->render('rmEmailBundle:Categorie:menu.html.twig', 
           array('liste_categories' => $liste_categories)); 

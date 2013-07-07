@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -70,3 +70,8 @@ services:
        class: Twig_Extensions_Extension_Text
        tags:
            - { name: twig.extension }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: rm\UserBundle\Entity\User
